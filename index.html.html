@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Education Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #003366;
+            --secondary: #00d2ff;
+            --bg: #f8fafc;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: #2d3436;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #003366 0%, #0077be 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* Thanh điều hướng trang */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            background: var(--white);
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .tab-button {
+            padding: 12px 25px;
+            border: none;
+            background: none;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        .tab-button.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Nội dung các trang */
+        .page-content {
+            flex: 1;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .tab-panel {
+            display: none; /* Ẩn mặc định */
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .tab-panel.active {
+            display: block; /* Hiện trang đang chọn */
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        img, video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .stat-box {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 30px;
+            text-align: center;
+            background: #eee;
+            font-size: 0.85rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Công Nghệ Số 4.0</h1>
+        <p>Học tập thông minh - Tương lai vững bước</p>
+    </header>
+
+    <nav class="nav-tabs">
+        <button class="tab-button active" onclick="openPage('info', event)">📊 Infographic</button>
+        <button class="tab-button" onclick="openPage('video', event)">🎥 Video Clip</button>
+    </nav>
+
+    <main class="page-content">
+        <div id="info" class="tab-panel active">
+            <div class="glass-card">
+                <h2 style="margin-bottom: 20px;">Số Liệu Thống Kê</h2>
+                <!-- Đã thay đổi đường dẫn file hình ảnh -->
+                <img src="Nhiệm vụ 2.1-Infographic.png" alt="Infographic Công Nghệ Số">
+                <div class="stats-grid">
+                    <div class="stat-box">🎯 85% Tương tác</div>
+                    <div class="stat-box">⏱️ 60% Tiết kiệm</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="video" class="tab-panel">
+            <div class="glass-card">
+                <h2 style="margin-bottom: 20px;">Trải Nghiệm Thực Tế</h2>
+                <!-- Đã thay đổi đường dẫn file video -->
+                <video controls style="width: 100%;">
+                    <source src="Nhiệm vụ 2.2.mp4" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ thẻ video.
+                </video>
+                <div class="stats-grid">
+                    <div class="stat-box">🌍 Học mọi lúc</div>
+                    <div class="stat-box">💻 Kỹ năng số</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p><strong>Nguồn:</strong> Canva AI, Unsplash, CapCut, Pexels</p>
+        <p>Phát hành theo giấy phép Creative Commons CC BY 4.0</p>
+    </footer>
+
+    <script>
+        function openPage(pageName, evt) {
+            // Ẩn tất cả các panel
+            var panels = document.getElementsByClassName("tab-panel");
+            for (var i = 0; i < panels.length; i++) {
+                panels[i].classList.remove("active");
+            }
+
+            // Bỏ active ở tất cả các nút
+            var buttons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            // Hiện panel được chọn và thêm active vào nút tương ứng
+            document.getElementById(pageName).classList.add("active");
+            if (evt) {
+                evt.currentTarget.classList.add("active");
+            }
+        }
+    </script>
+</body>
+</html>
